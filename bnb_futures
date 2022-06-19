@@ -9,8 +9,8 @@ Created on Wed Mar  2 12:33:03 2022
 from binance.client import Client
 import time
 
-api_key = "GjwGiZnhWcMUQyxJqNzHU5WiZkicRF00iLMZONYrvSWmwlk4DRnSBm98tnSE3xzF"
-api_secret = "teJ7r78Xn3kNKFV80YZNpdyIo1shEVmu6Yaeb8EGktH7ZTVoBjk4eWgRELGgtpvm"
+api_key = ""
+api_secret = ""
 binance_client = Client(api_key, api_secret)
 bnb_newprice = float(binance_client.futures_symbol_ticker(symbol='BNBUSDT')['price'])
 bnb_prevprice = bnb_newprice
