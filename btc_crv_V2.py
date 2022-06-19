@@ -15,8 +15,8 @@ y = []
 n = 0
 
 # init
-api_key = "M9FsR6XdaZKkIhHmKeCsGSdjYzVWIWGlnsMxM1n6NnTViEaOoKXsPb0ItO4usCuD"
-api_secret = "3syXcf4fZ1Q0h51HNxYN8msjOe5RXzmyMm11KZvCnTCf3XGjK2nn4M0dK51qFu5i"
+api_key = ""
+api_secret = ""
 client = Client(api_key, api_secret)
 
 #while n<=10 :
