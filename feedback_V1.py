@@ -10,9 +10,9 @@ import smtplib, ssl
 
 port = 465  # For SSL
 smtp_server = "smtp.gmail.com"
-sender_email = "yannick.durindel@gmail.com"  # Enter your address
-receiver_email = "yannick.durindel@gmail.com"  # Enter receiver address
-password = "******"
+sender_email = "@gmail.com"  # Enter your address
+receiver_email = "@gmail.com"  # Enter receiver address
+password = ""
 message = """\
 Subject: Feedback from the bot !
 
