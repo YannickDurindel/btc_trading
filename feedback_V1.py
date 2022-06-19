@@ -12,7 +12,7 @@ port = 465  # For SSL
 smtp_server = "smtp.gmail.com"
 sender_email = "yannick.durindel@gmail.com"  # Enter your address
 receiver_email = "yannick.durindel@gmail.com"  # Enter receiver address
-password = "Pyfgcrl8!"
+password = "******"
 message = """\
 Subject: Feedback from the bot !
 
