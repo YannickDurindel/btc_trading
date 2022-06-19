@@ -23,9 +23,9 @@ highlimit = 1.0006
 lowlimit = 1.0006
 port = 465
 smtp_server = "smtp.gmail.com"
-sender_email = "yannick.durindel@gmail.com"
-receiver_email = "yannick.durindel@gmail.com"
-password = "Pyfgcrl8!"
+sender_email = "@gmail.com"
+receiver_email = "@gmail.com"
+password = ""
 with open('performances.csv', 'r') as P:
   perf = csv.reader(P)
   Perf = list(perf)
