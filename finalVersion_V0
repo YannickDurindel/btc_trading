@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Feb 19 11:14:02 2022
+
+@author: yannick
+"""
+
+from binance.client import Client
+import requests
+import time
+
+# init
+api_key = "M9FsR6XdaZKkIhHmKeCsGSdjYzVWIWGlnsMxM1n6NnTViEaOoKXsPb0ItO4usCuD"
+api_secret = "3syXcf4fZ1Q0h51HNxYN8msjOe5RXzmyMm11KZvCnTCf3XGjK2nn4M0dK51qFu5i"
+client = Client(api_key, api_secret)
+t_init = time.time()
+
+# get balance for a specific asset only (BTC)
+wallet0 = float(client.get_asset_balance(asset='USDT')['free'])
+portfolio0 = float(client.get_asset_balance(asset='BTC')['free'])
+wallet = wallet0
+portfolio = portfolio0
+
+#retrieve the current price of the btc : 
+def getbitcoin():
+    response = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+    data = response.json()
+    return int(data["bpi"]["USD"]["rate"][0:2]+data["bpi"]["USD"]["rate"][3:6]+data["bpi"]["USD"]["rate"][7:13])*0.0001
+
+#buy BTC and show the stats
+def buy(wallet):
+    client.get_open_orders(symbol = 'BNBBTC')
+    portfolio = float(client.get_asset_balance(asset='BTC')['free'])
+    wallet = float(client.get_asset_balance(asset='USDT')['free'])
+    print("BUY !!!")
+    print("portfolio = ",portfolio*getbitcoin(),"BTC")
+    print("interest = ",portfolio*100*getbitcoin()/wallet0)
+    print("run time = ",time.time()-t_init,'sec')
+    print("\n")
+    return portfolio,wallet
+    
+#sell btc and show stats
+def sell(portfolio):
+    client.get_open_orders(symbol = 'BNBUSDT')
+    portfolio = float(client.get_asset_balance(asset='BTC')['free'])
+    wallet = float(client.get_asset_balance(asset='USDT')['free'])
+    print("SELL !!!")
+    print("wallet = ",wallet,"USDT")
+    print("interest = ",wallet*100/wallet0)
+    print("run time = ",time.time()-t_init,'sec')
+    print("\n")
+    return portfolio,wallet
+
+#wait a sec each lap
+def HoldOn(t0,dt):
+    t1 = time.time()
+    while t0 + dt > t1 :
+        t1 = time.time()
+
+btc_new = getbitcoin()
+btc_old = getbitcoin()
+hellcase = False
+while True:
+    try:
+        t0 = time.time()
+        if btc_new>btc_old and wallet==0 and hellcase==False :
+            sell(portfolio)
+        elif btc_new<btc_old and portfolio==0 and hellcase==False:
+            buy(wallet)
+        elif btc_new<btc_old and wallet==0:
+            hellcase = True
+        if hellcase==True:
+            while btc_new<btc_old:
+                btc_new = getbitcoin()
+            hellcase = False
+            sell(portfolio)
+        HoldOn(t0,1)
+    except KeyboardInterrupt:
+        sell(portfolio)
+        break
+    
+print("final wallet = ",wallet,"USDT")
+print("total interest = ",wallet*100/wallet0)
+print("total run time = ",time.time()-t_init,'sec')
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
