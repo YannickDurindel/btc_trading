@@ -25,9 +25,9 @@ with open('performances.csv', 'r') as P:
   P.close()
 port = 465  # For SSL
 smtp_server = "smtp.gmail.com"
-sender_email = "yannick.durindel@gmail.com"  # Enter your address
-receiver_email = "yannick.durindel@gmail.com"  # Enter receiver address
-password = "Pyfgcrl8!"
+sender_email = "@gmail.com"  # Enter your address
+receiver_email = "@gmail.com"  # Enter receiver address
+password = ""
 message = ""
 W = 100
 Wi = W
