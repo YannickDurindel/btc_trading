@@ -22,9 +22,9 @@ tbuy = time.time()
 tsell = time.time()
 port = 465  
 smtp_server = "smtp.gmail.com"
-sender_email = "yannick.durindel@gmail.com"  
-receiver_email = "yannick.durindel@gmail.com"
-password = "Pyfgcrl8!"
+sender_email = "@gmail.com"  
+receiver_email = "@gmail.com"
+password = ""
 message = ""
 print("TO THE MOON !!!\n")
 def getwallet(currency):
